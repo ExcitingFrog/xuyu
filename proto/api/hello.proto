@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package xuyu.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "xuyu/v1;xuyuV1";
+// swagger definition.
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "xuyu API"
+    version: "1.0.0"
+  }
+  schemes: HTTP
+  schemes: HTTPS
+  consumes: "application/json"
+  produces: "application/json"
+  base_path: "/xuyu/api"
+  responses: {
+    key: "404"
+    value: {
+      description: "Returned when the resource does not exists."
+      schema: {
+        json_schema: {
+          ref: ".xuyu.v1.Error"
+        }
+      }
+    }
+  }
+  responses: {
+    key: "503"
+    value: {
+      description: "Returned when the resource is temporarily unavailable."
+      schema: {
+        json_schema: {
+          ref: ".xuyu.v1.Error"
+        }
+      }
+    }
+  }
+  responses: {
+    key: "500"
+    value: {
+      description: "Returned when the internal server error."
+      schema: {
+        json_schema: {
+          ref: ".xuyu.v1.Error"
+        }
+      }
+    }
+  }
+  responses: {
+    key: "403"
+    value: {
+      description: "Returned when the user does not have permission to access the resource."
+      schema: {
+        json_schema: {
+          ref: ".xuyu.v1.Error"
+        }
+      }
+    }
+  }
+};
+
+// HelloAPIs.
+service HelloAPI {
+  rpc Hello(HelloRequest) returns (HelloResponse) {
+    option (google.api.http) = {
+      get: "/xuyu/v1/hello"
+      response_body: "*"
+    };
+  }
+}
+
+// HelloRequest.
+message HelloRequest {}
+
+// HelloResponse.
+message HelloResponse {
+    string message = 1;
+}

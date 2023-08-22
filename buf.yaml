@@ -1,0 +1,15 @@
+version: v1
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway
+lint:
+  use:
+    - DEFAULT
+  except:
+    - PACKAGE_DIRECTORY_MATCH
+    - SERVICE_SUFFIX
+    - COMMENTS
+  ignore_only:
+breaking:
+  use:
+    - FILE

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package xuyu.v1;
+
+option go_package = "xuyu/v1;xuyuV1";
+
+// Error represents error message when error occurs.
+message Error {
+  // code of service response
+  int32 code = 1;
+  // message of service response
+  string message = 2;
+}

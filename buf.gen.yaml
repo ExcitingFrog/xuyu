@@ -1,0 +1,39 @@
+version: v1
+plugins:
+  ################################################################################
+  # Go
+  ################################################################################
+  - name: go
+    out: proto/gen/go
+    opt:
+      - paths=source_relative
+  - name: go-grpc
+    out: proto/gen/go
+    opt:
+      - paths=source_relative
+      - require_unimplemented_servers=false
+  ################################################################################
+  # Gateway
+  ################################################################################
+  - name: grpc-gateway
+    out: proto/gen/go
+    opt:
+      - paths=source_relative
+      - allow_delete_body=true
+  ################################################################################
+  # OpenAPI
+  ################################################################################
+  - name: openapiv2
+    out: proto/gen/spec
+    opt:
+      - json_names_for_fields=false
+      - allow_delete_body=true
+  ################################################################################
+  # Doc
+  ################################################################################
+  - name: doc
+    out: proto/gen/spec/xuyu/v1
+    opt: markdown,README.md
+  - name: doc
+    out: proto/gen/spec/xuyu/v1
+    opt: json,protobuf-resource.json
