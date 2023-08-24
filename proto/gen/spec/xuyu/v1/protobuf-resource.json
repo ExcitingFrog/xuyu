@@ -129,6 +129,86 @@
           ]
         }
       ]
+    },
+    {
+      "name": "proto/api/hello_error.proto",
+      "description": "",
+      "package": "xuyu.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "HelloErrorRequest",
+          "longName": "HelloErrorRequest",
+          "fullName": "xuyu.v1.HelloErrorRequest",
+          "description": "HelloErrorRequest.",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "HelloErrorResponse",
+          "longName": "HelloErrorResponse",
+          "fullName": "xuyu.v1.HelloErrorResponse",
+          "description": "HelloErrorResponse.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "message",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "HelloErrorAPI",
+          "longName": "HelloErrorAPI",
+          "fullName": "xuyu.v1.HelloErrorAPI",
+          "description": "HelloErrorAPI.",
+          "methods": [
+            {
+              "name": "HelloError",
+              "description": "",
+              "requestType": "HelloErrorRequest",
+              "requestLongType": "HelloErrorRequest",
+              "requestFullType": "xuyu.v1.HelloErrorRequest",
+              "requestStreaming": false,
+              "responseType": "HelloErrorResponse",
+              "responseLongType": "HelloErrorResponse",
+              "responseFullType": "xuyu.v1.HelloErrorResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/xuyu/v1/hello/error"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "scalarValueTypes": [

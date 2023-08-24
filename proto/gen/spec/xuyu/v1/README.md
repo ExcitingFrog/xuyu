@@ -12,6 +12,12 @@
   
     - [HelloAPI](#xuyu-v1-HelloAPI)
   
+- [proto/api/hello_error.proto](#proto_api_hello_error-proto)
+    - [HelloErrorRequest](#xuyu-v1-HelloErrorRequest)
+    - [HelloErrorResponse](#xuyu-v1-HelloErrorResponse)
+  
+    - [HelloErrorAPI](#xuyu-v1-HelloErrorAPI)
+  
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -94,6 +100,57 @@ HelloAPIs.
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Hello | [HelloRequest](#xuyu-v1-HelloRequest) | [HelloResponse](#xuyu-v1-HelloResponse) |  |
+
+ 
+
+
+
+<a name="proto_api_hello_error-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## proto/api/hello_error.proto
+
+
+
+<a name="xuyu-v1-HelloErrorRequest"></a>
+
+### HelloErrorRequest
+HelloErrorRequest.
+
+
+
+
+
+
+<a name="xuyu-v1-HelloErrorResponse"></a>
+
+### HelloErrorResponse
+HelloErrorResponse.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| message | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="xuyu-v1-HelloErrorAPI"></a>
+
+### HelloErrorAPI
+HelloErrorAPI.
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| HelloError | [HelloErrorRequest](#xuyu-v1-HelloErrorRequest) | [HelloErrorResponse](#xuyu-v1-HelloErrorResponse) |  |
 
  
 

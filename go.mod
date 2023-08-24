@@ -3,12 +3,14 @@ module github.com/ExcitingFrog/xuyu
 go 1.20
 
 require (
-	github.com/ExcitingFrog/go-core-common v0.0.0-20230822095411-c98870c94343
+	github.com/ExcitingFrog/go-core-common v0.0.0-20230823062635-08a89f4afd87
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.2
 	google.golang.org/genproto/googleapis/api v0.0.0-20230726155614-23370e0ffb3e
 	google.golang.org/grpc v1.57.0
 	google.golang.org/protobuf v1.31.0
 )
+
+require go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.42.0 // indirect
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
