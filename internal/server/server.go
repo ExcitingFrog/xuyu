@@ -11,9 +11,9 @@ import (
 	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuyu/internal/controllers"
 	"github.com/ExcitingFrog/xuyu/internal/repository"
+	"github.com/ExcitingFrog/xuyu/internal/resources"
 	"github.com/ExcitingFrog/xuyu/internal/services"
 	pb "github.com/ExcitingFrog/xuyu/proto/gen/go/proto/api"
-	"github.com/sirupsen/logrus"
 )
 
 type Server struct {
@@ -30,7 +30,9 @@ func NewServer(grpc *grpc.GRpc, gateway *grpc_gateway.Gataway, mongodb *mongodb.
 
 	repository := repository.NewRepository(mongodb)
 
-	services := services.NewServices(repository)
+	xuanwu := resources.NewXuanwu()
+
+	services := services.NewServices(repository, xuanwu)
 
 	controllers := controllers.NewControllers(services)
 
@@ -44,14 +46,12 @@ func NewServer(grpc *grpc.GRpc, gateway *grpc_gateway.Gataway, mongodb *mongodb.
 }
 func (s *Server) Init() error {
 
-	logrus.Info("start register handler")
 	pb.RegisterHelloAPIServer(s.grpc.Server, s.controllers)
 
 	return nil
 }
 
 func (s *Server) Run() error {
-	logrus.Info("server is running")
 
 	ctx := context.Background()
 	// register gateway

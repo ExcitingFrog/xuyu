@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HelloAPIClient interface {
 	Hello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
+	HelloTrace(ctx context.Context, in *HelloTraceRequest, opts ...grpc.CallOption) (*HelloTraceResponse, error)
 }
 
 type helloAPIClient struct {
@@ -42,11 +43,21 @@ func (c *helloAPIClient) Hello(ctx context.Context, in *HelloRequest, opts ...gr
 	return out, nil
 }
 
+func (c *helloAPIClient) HelloTrace(ctx context.Context, in *HelloTraceRequest, opts ...grpc.CallOption) (*HelloTraceResponse, error) {
+	out := new(HelloTraceResponse)
+	err := c.cc.Invoke(ctx, "/xuyu.v1.HelloAPI/HelloTrace", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HelloAPIServer is the server API for HelloAPI service.
 // All implementations should embed UnimplementedHelloAPIServer
 // for forward compatibility
 type HelloAPIServer interface {
 	Hello(context.Context, *HelloRequest) (*HelloResponse, error)
+	HelloTrace(context.Context, *HelloTraceRequest) (*HelloTraceResponse, error)
 }
 
 // UnimplementedHelloAPIServer should be embedded to have forward compatible implementations.
@@ -55,6 +66,9 @@ type UnimplementedHelloAPIServer struct {
 
 func (UnimplementedHelloAPIServer) Hello(context.Context, *HelloRequest) (*HelloResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
+}
+func (UnimplementedHelloAPIServer) HelloTrace(context.Context, *HelloTraceRequest) (*HelloTraceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HelloTrace not implemented")
 }
 
 // UnsafeHelloAPIServer may be embedded to opt out of forward compatibility for this service.
@@ -86,6 +100,24 @@ func _HelloAPI_Hello_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HelloAPI_HelloTrace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HelloTraceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HelloAPIServer).HelloTrace(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/xuyu.v1.HelloAPI/HelloTrace",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HelloAPIServer).HelloTrace(ctx, req.(*HelloTraceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HelloAPI_ServiceDesc is the grpc.ServiceDesc for HelloAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -96,6 +128,10 @@ var HelloAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Hello",
 			Handler:    _HelloAPI_Hello_Handler,
+		},
+		{
+			MethodName: "HelloTrace",
+			Handler:    _HelloAPI_HelloTrace_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -71,6 +71,12 @@ service HelloAPI {
       response_body: "*"
     };
   }
+  rpc HelloTrace(HelloTraceRequest) returns (HelloTraceResponse) {
+    option (google.api.http) = {
+      get: "/xuyu/v1/hello/trace"
+      response_body: "*"
+    };
+  }
 }
 
 // HelloRequest.
@@ -78,5 +84,13 @@ message HelloRequest {}
 
 // HelloResponse.
 message HelloResponse {
+    string message = 1;
+}
+
+// HelloTraceRequest.
+message HelloTraceRequest {}
+
+// HelloTraceResponse.
+message HelloTraceResponse {
     string message = 1;
 }

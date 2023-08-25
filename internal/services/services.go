@@ -1,6 +1,9 @@
 package services
 
-import "github.com/ExcitingFrog/xuyu/internal/repository"
+import (
+	"github.com/ExcitingFrog/xuyu/internal/repository"
+	"github.com/ExcitingFrog/xuyu/internal/resources"
+)
 
 type IServices interface {
 	IHello
@@ -8,10 +11,13 @@ type IServices interface {
 
 type Services struct {
 	repository repository.IRepository
+
+	xuanwu *resources.Xuanwu
 }
 
-func NewServices(repository repository.IRepository) *Services {
+func NewServices(repository repository.IRepository, xuanwu *resources.Xuanwu) *Services {
 	return &Services{
 		repository: repository,
+		xuanwu:     xuanwu,
 	}
 }

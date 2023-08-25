@@ -9,6 +9,8 @@
 - [proto/api/hello.proto](#proto_api_hello-proto)
     - [HelloRequest](#xuyu-v1-HelloRequest)
     - [HelloResponse](#xuyu-v1-HelloResponse)
+    - [HelloTraceRequest](#xuyu-v1-HelloTraceRequest)
+    - [HelloTraceResponse](#xuyu-v1-HelloTraceResponse)
   
     - [HelloAPI](#xuyu-v1-HelloAPI)
   
@@ -85,6 +87,31 @@ HelloResponse.
 
 
 
+
+<a name="xuyu-v1-HelloTraceRequest"></a>
+
+### HelloTraceRequest
+HelloTraceRequest.
+
+
+
+
+
+
+<a name="xuyu-v1-HelloTraceResponse"></a>
+
+### HelloTraceResponse
+HelloTraceResponse.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| message | [string](#string) |  |  |
+
+
+
+
+
  
 
  
@@ -100,6 +127,7 @@ HelloAPIs.
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Hello | [HelloRequest](#xuyu-v1-HelloRequest) | [HelloResponse](#xuyu-v1-HelloResponse) |  |
+| HelloTrace | [HelloTraceRequest](#xuyu-v1-HelloTraceRequest) | [HelloTraceResponse](#xuyu-v1-HelloTraceResponse) |  |
 
  
 

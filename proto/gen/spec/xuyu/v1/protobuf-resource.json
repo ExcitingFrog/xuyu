@@ -95,6 +95,41 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "HelloTraceRequest",
+          "longName": "HelloTraceRequest",
+          "fullName": "xuyu.v1.HelloTraceRequest",
+          "description": "HelloTraceRequest.",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "HelloTraceResponse",
+          "longName": "HelloTraceResponse",
+          "fullName": "xuyu.v1.HelloTraceResponse",
+          "description": "HelloTraceResponse.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "message",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         }
       ],
       "services": [
@@ -121,6 +156,28 @@
                     {
                       "method": "GET",
                       "pattern": "/xuyu/v1/hello"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "HelloTrace",
+              "description": "",
+              "requestType": "HelloTraceRequest",
+              "requestLongType": "HelloTraceRequest",
+              "requestFullType": "xuyu.v1.HelloTraceRequest",
+              "requestStreaming": false,
+              "responseType": "HelloTraceResponse",
+              "responseLongType": "HelloTraceResponse",
+              "responseFullType": "xuyu.v1.HelloTraceResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/xuyu/v1/hello/trace"
                     }
                   ]
                 }

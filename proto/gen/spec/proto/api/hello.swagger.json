@@ -66,6 +66,52 @@
           "HelloAPI"
         ]
       }
+    },
+    "/xuyu/v1/hello/trace": {
+      "get": {
+        "operationId": "HelloAPI_HelloTrace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HelloTraceResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exists.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "500": {
+            "description": "Returned when the internal server error.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "503": {
+            "description": "Returned when the resource is temporarily unavailable.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HelloAPI"
+        ]
+      }
     }
   },
   "definitions": {
@@ -119,6 +165,15 @@
         }
       },
       "description": "HelloResponse."
+    },
+    "v1HelloTraceResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "description": "HelloTraceResponse."
     }
   }
 }

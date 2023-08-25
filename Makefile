@@ -1,5 +1,3 @@
-include Makefile.bin.mk
-
 .PHONY: help
 help:
 	@echo 'Management commands for this service:'
@@ -20,6 +18,8 @@ buf-clean:
 
 .PHONY: buf-generate
 buf-generate:
+	buf build -o lock.json
+	buf generate
 
 .PHONY: mocks
 mocks:
