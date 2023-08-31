@@ -6,7 +6,6 @@ import (
 
 	"github.com/ExcitingFrog/go-core-common/grpc"
 	"github.com/ExcitingFrog/go-core-common/grpc_gateway"
-	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/go-core-common/mongodb"
 	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuyu/internal/controllers"
@@ -23,10 +22,9 @@ type Server struct {
 	grpc        *grpc.GRpc
 	gateway     *grpc_gateway.Gataway
 	mongodb     *mongodb.MongoDB
-	jaeger      *jaeger.Jaeger
 }
 
-func NewServer(grpc *grpc.GRpc, gateway *grpc_gateway.Gataway, mongodb *mongodb.MongoDB, jaeger *jaeger.Jaeger) *Server {
+func NewServer(grpc *grpc.GRpc, gateway *grpc_gateway.Gataway, mongodb *mongodb.MongoDB) *Server {
 
 	repository := repository.NewRepository(mongodb)
 
@@ -41,7 +39,6 @@ func NewServer(grpc *grpc.GRpc, gateway *grpc_gateway.Gataway, mongodb *mongodb.
 		grpc:        grpc,
 		gateway:     gateway,
 		mongodb:     mongodb,
-		jaeger:      jaeger,
 	}
 }
 func (s *Server) Init() error {

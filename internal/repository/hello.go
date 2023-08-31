@@ -3,8 +3,9 @@ package repository
 import (
 	"context"
 
-	"github.com/ExcitingFrog/go-core-common/jaeger"
+	"github.com/ExcitingFrog/go-core-common/utrace"
 	"github.com/ExcitingFrog/xuyu/internal/schema"
+	trace_codes "go.opentelemetry.io/otel/codes"
 )
 
 type IHello interface {
@@ -15,11 +16,14 @@ const helloCollection = "hello"
 const testDB = "test"
 
 func (r *repository) SaveHello(ctx context.Context, h *schema.Hello) error {
-	ctx, span := jaeger.StartSpanFromContext(ctx, "Repository:Hello")
+	ctx, span, logger := utrace.StartSpanAndLogFromContext(ctx, "Repository:Hello")
 	defer span.End()
 
 	_, err := r.mongo.Client.Database(testDB).Collection(helloCollection).InsertOne(ctx, h)
 	if err != nil {
+		logger.Error(err.Error())
+		span.RecordError(err)
+		span.SetStatus(trace_codes.Error, err.Error())
 		return err
 	}
 	return nil

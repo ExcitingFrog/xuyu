@@ -4,13 +4,14 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/go-core-common/provider"
+	"github.com/ExcitingFrog/go-core-common/utrace"
 	xw "github.com/ExcitingFrog/xuanwu/swagger/client/client"
 	"github.com/ExcitingFrog/xuanwu/swagger/client/client/operations"
 	"github.com/ExcitingFrog/xuyu/configs"
 	httptransport "github.com/go-openapi/runtime/client"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
+	trace_codes "go.opentelemetry.io/otel/codes"
 )
 
 type Xuanwu struct {
@@ -23,26 +24,24 @@ func NewXuanwu() *Xuanwu {
 	xuanwu := &Xuanwu{}
 	config := configs.GetConfig()
 
-	// xuanwuCfg := xw.DefaultTransportConfig().WithHost(config.XuyuHost).WithSchemes([]string{config.XuyuSchema})
-
 	transport := httptransport.New(config.XuyuHost, "xuanwu/v1", []string{config.XuyuSchema})
 	transport.Transport = otelhttp.NewTransport(http.DefaultTransport)
 
-	// xuanwu.client = xw.NewHTTPClientWithConfig(nil, xuanwuCfg)
 	xuanwu.client = xw.New(transport, nil)
 
 	return xuanwu
 }
 
 func (x *Xuanwu) Hello(ctx context.Context) error {
-	ctx, span, logger := jaeger.StartSpanAndLogFromContext(ctx, "Resources:Hello")
+	ctx, span, logger := utrace.StartSpanAndLogFromContext(ctx, "Resources:Hello")
 	defer span.End()
 
-	ctx = context.WithValue(ctx, "token", "token")
 	params := operations.NewHelloParams().WithContext(ctx)
 	_, err := x.client.Operations.Hello(params)
 	if err != nil {
 		logger.Error(err.Error())
+		span.RecordError(err)
+		span.SetStatus(trace_codes.Error, err.Error())
 		return err
 	}
 	return err
