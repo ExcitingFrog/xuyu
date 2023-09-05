@@ -52,7 +52,7 @@ func (s *Server) Run() error {
 
 	ctx := context.Background()
 	// register gateway
-	pb.RegisterHelloAPIHandlerFromEndpoint(ctx, s.gateway.Mux, fmt.Sprintf(":%d", s.grpc.Config.ServerPort), s.gateway.Options())
+	_ = pb.RegisterHelloAPIHandlerFromEndpoint(ctx, s.gateway.Mux, fmt.Sprintf(":%d", s.grpc.Config.ServerPort), s.gateway.Options())
 
 	return nil
 }
