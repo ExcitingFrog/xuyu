@@ -47,8 +47,8 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git clone https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
+        cp -rf proto go-proto-lib/grpc/xuyu
         cd go-proto-lib
-        cp -rf ../proto grpc/xuyu
         git status
         CHANGES=$(git status --porcelain)
         # Check if there are any changes to commit
