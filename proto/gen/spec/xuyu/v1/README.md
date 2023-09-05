@@ -107,7 +107,6 @@ HelloTraceResponse.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | message | [string](#string) |  |  |
-| traceId | [string](#string) |  |  |
 
 
 

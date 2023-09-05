@@ -171,9 +171,6 @@
       "properties": {
         "message": {
           "type": "string"
-        },
-        "traceId": {
-          "type": "string"
         }
       },
       "description": "HelloTraceResponse."
