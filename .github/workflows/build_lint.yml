@@ -57,7 +57,7 @@ jobs:
         git config --global user.name "GitHub Action"
         git clone https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
         echo "Clone go-proto-lib success"
-        mv proto go-proto-lib/grpc/xuyu
+        cp -rf proto go-proto-lib/grpc/xuyu
         cd go-proto-lib
         git add .
         git commit -m "Update proto"
