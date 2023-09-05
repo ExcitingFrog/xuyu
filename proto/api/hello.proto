@@ -93,5 +93,4 @@ message HelloTraceRequest {}
 // HelloTraceResponse.
 message HelloTraceResponse {
     string message = 1;
-    string traceId = 2;
 }
