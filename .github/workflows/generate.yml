@@ -53,7 +53,7 @@ jobs:
         CHANGES=$(git status --porcelain)
         # Check if there are any changes to commit
         if [ -n "$CHANGES" ]; then
-          git add .
+          git add --all
           git commit -m "Update proto"
           git remote set-url origin https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
           git push origin ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
