@@ -1,0 +1,182 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "xuyu API",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "HelloAPI"
+    }
+  ],
+  "basePath": "/xuyu/api",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/xuyu/v1/hello": {
+      "get": {
+        "operationId": "HelloAPI_Hello",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HelloResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exists.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "500": {
+            "description": "Returned when the internal server error.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "503": {
+            "description": "Returned when the resource is temporarily unavailable.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HelloAPI"
+        ]
+      }
+    },
+    "/xuyu/v1/hello/trace": {
+      "get": {
+        "operationId": "HelloAPI_HelloTrace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HelloTraceResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exists.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "500": {
+            "description": "Returned when the internal server error.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "503": {
+            "description": "Returned when the resource is temporarily unavailable.",
+            "schema": {
+              "$ref": "#/definitions/v1Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HelloAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "title": "code of service response"
+        },
+        "message": {
+          "type": "string",
+          "title": "message of service response"
+        }
+      },
+      "description": "Error represents error message when error occurs."
+    },
+    "v1HelloResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "description": "HelloResponse."
+    },
+    "v1HelloTraceResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "traceId": {
+          "type": "string"
+        }
+      },
+      "description": "HelloTraceResponse."
+    }
+  }
+}
