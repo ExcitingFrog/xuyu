@@ -6,8 +6,8 @@ import (
 
 	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/go-core-common/utrace"
-	xw "github.com/ExcitingFrog/xuanwu/swagger/client/client"
-	"github.com/ExcitingFrog/xuanwu/swagger/client/client/operations"
+	xw "github.com/ExcitingFrog/go-proto-lib/rest/xuanwu/swagger/client/client"
+	"github.com/ExcitingFrog/go-proto-lib/rest/xuanwu/swagger/client/client/operations"
 	"github.com/ExcitingFrog/xuyu/configs"
 	httptransport "github.com/go-openapi/runtime/client"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
