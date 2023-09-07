@@ -54,8 +54,8 @@ jobs:
         if [ -n "$CHANGES" ]; then
           git add .
           git commit -m "Update proto"
-          git remote set-url origin https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
-          git push --force origin main:${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         else
           echo "No changes to commit."
         fi
+        git remote set-url origin https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
+        git push --force origin main:${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
